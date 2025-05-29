@@ -540,6 +540,14 @@ function generatePropertyTable() {
     `;
     // Ajout des boutons pour valider, proposer et annuler
     // (Ajoutez ici le code pour les boutons comme dans votre code original)
+    // ================================== Choix (valider, proposer, annuler)
+    let choix = "";
+    if (cells[8].innerText.trim()) choix = cells[8].innerText.trim();
+    else if (cells[9].innerText.trim()) choix = cells[9].innerText.trim();
+    else if (cells[10].innerText.trim()) choix = cells[10].innerText.trim();
+    bodyData.push([bien, titre, description, superficie, prix, choix]);
+  });
+    
     tbody.appendChild(row);
   });
 }
