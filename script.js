@@ -149,7 +149,7 @@ function selectLanguage() {
   });
 }
 
-function submitUser Info() {
+function submitUserInfo() {
   const t = translations[currentLanguage];
   const username = document.getElementById("username").value.trim();
   const phone = document.getElementById("phone").value.trim();
