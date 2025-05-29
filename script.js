@@ -467,28 +467,34 @@ const translations = {
   }
 };
 
-
-
-
-
 function selectLanguage() {
   const lang = document.getElementById("language").value;
   if (!lang) return;
   currentLanguage = lang;
   const t = translations[lang];
+
   // Met à jour les éléments visibles et textes
-  document.getElementById("languageSelection").classList.add("hidden");
-  document.getElementById("userForm").classList.remove("hidden");
+  document.getElementById("language-selection").classList.add("hidden");
+  document.getElementById("user-form").classList.remove("hidden");
   document.getElementById("welcome-message").innerText = t.welcome;
   document.getElementById("label-username").innerText = t.username;
   document.getElementById("label-phone").innerText = t.phone;
   document.getElementById("btn-continue").innerText = t.continue;
+  document.getElementById("btn-back").innerText = t.back;
+  document.getElementById("property-title").innerText = t.propertyTitle;
+  document.getElementById("btn-save").innerText = t.save;
+
+const tableHeaders = document.querySelectorAll("#property-table th");
+  t.tableHeaders.forEach((header, index) => {
+    tableHeaders[index].innerText = header;
+  });
 }
 
-function submitUserInfo() {
+function submitUser Info() {
   const t = translations[currentLanguage];
   const username = document.getElementById("username").value.trim();
   const phone = document.getElementById("phone").value.trim();
+
   if (!username || !phone) {
     alert(t.fillAll);
     return;
@@ -498,8 +504,8 @@ function submitUserInfo() {
     alert(t.invalidPhone);
     return;
   }
-  document.getElementById("userForm").classList.add("hidden");
-  document.getElementById("propertyTableSection").classList.remove("hidden");
+  document.getElementById("user-form").classList.add("hidden");
+  document.getElementById("content").classList.remove("hidden");
   generatePropertyTable();
 }
 
@@ -538,6 +544,25 @@ function generatePropertyTable() {
       <td class="proposal-cell"></td>
       <td class="cancel-cell"></td>
     `;
+    tbody.appendChild(row);
+  });
+}
+
+function saveToPDF() {
+  // Implement PDF saving logic here
+}
+
+// Add other necessary functions as needed
+
+
+
+
+
+
+
+
+
+    
     // Ajout des boutons pour valider, proposer et annuler
     // (Ajoutez ici le code pour les boutons comme dans votre code original)
     // ================================== Choix (valider, proposer, annuler)
