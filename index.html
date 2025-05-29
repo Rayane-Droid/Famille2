@@ -7,31 +7,24 @@
   <title>Vente de Biens</title>
   <link rel="stylesheet" href="famille.css">
   <script src="script.js" defer></script>
-  <script src="famille.js" defer></script>
 </head>
 
 <body>
   <div id="app">
-    <!-- Inclusion de la section de sélection de langue -->
     <div id="languageSelection"></div>
-    
-    <!-- Inclusion de la section de formulaire utilisateur -->
     <div id="userForm" class="hidden"></div>
-    
-    <!-- Inclusion de la section de tableau et enregistrement PDF -->
-    <div id="propertyTableSection" class="hidden"></div>
+    <div id="propertyTable" class="hidden"></div>
   </div>
 
   <script>
-    // Chargement des sections HTML
     async function loadSections() {
       const languageSelectionResponse = await fetch('languageSelection.html');
       const userFormResponse = await fetch('userForm.html');
-      const propertyTableResponse = await fetch('propertyTableSection.html');
+      const propertyTableResponse = await fetch('propertyTable.html');
 
       document.getElementById('languageSelection').innerHTML = await languageSelectionResponse.text();
       document.getElementById('userForm').innerHTML = await userFormResponse.text();
-      document.getElementById('propertyTableSection').innerHTML = await propertyTableResponse.text();
+      document.getElementById('propertyTable').innerHTML = await propertyTableResponse.text();
     }
 
     window.addEventListener('load', () => {
