@@ -1,0 +1,30 @@
+
+<div id="content" class="hidden" aria-live="polite" aria-label="Liste des biens disponibles">
+  <button class="btn" onclick="resetApp()" id="btn-back">Retour au menu des langues</button>
+  <h2 id="property-title">Nos biens disponibles :</h2>
+  <table id="property-table" role="table" aria-describedby="property-title">
+    <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Bien</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Description</th>
+        <th scope="col">Superficie</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Vidéo</th>
+        <th scope="col">Valider</th>
+        <th scope="col">Proposition</th>
+        <th scope="col">Annuler</th>
+      </tr>
+    </thead>
+    <tbody id="property-body"></tbody>
+  </table>
+
+  <div class="input-block">
+    <label for="comments">Commentaires :</label>
+    <textarea id="comments" rows="4" cols="50" placeholder="Laissez vos commentaires ici..."></textarea>
+  </div>
+  <br />
+  <button class="btn" onclick="saveToPDF()" id="btn-save">Enregistrer en PDF</button>
+</div>
