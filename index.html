@@ -1,42 +1,85 @@
+
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8" />
   <title>Vente de Biens</title>
+  <!-- Lien vers le fichier CSS -->
   <link rel="stylesheet" href="famille.css">
-  <script src="script.js" defer></script>
+  <!-- Lien vers le fichier JS -->
+  <script src="dictionnaire.js"></script>
 </head>
-
+<style>
+ </style>
 <body>
-  <div id="app">
-    <!-- Inclusion de la section de sélection de langue -->
-    <div id="languageSelection"></div>
-    
-    <!-- Inclusion de la section de formulaire utilisateur -->
-    <div id="userForm" class="hidden"></div>
-    
-    <!-- Inclusion de la section de tableau et enregistrement PDF -->
-    <div id="propertyTable" class="hidden"></div>
+  <div id="language-selection">
+    <h2 id="language-prompt">
+      🇲🇦 اختر لغتك :<br />
+      🇫🇷 Choisissez votre langue :<br />
+      🇺🇸 Choose your language:<br />
+      🇪🇸 Elija su idioma:<br />
+      🇩🇪 Wählen Sie Ihre Sprache:<br />
+      🇮🇹 Scegli la tua lingua:
+    </h2>
+    <div class="language-menu">
+      <select id="language" onchange="selectLanguage()">
+        <option value="">--</option>
+        <option value="fr">Français</option>
+        <option value="ar">العربية</option>
+        <option value="en">Anglais</option>
+        <option value="es">Espagnol</option>
+        <option value="de">Allemand</option>
+        <option value="it">Italien</option>
+      </select>
+    </div>
   </div>
 
-  <script>
-    async function loadSections() {
-      const languageSelectionResponse = await fetch('languageSelection.html');
-      const userFormResponse = await fetch('userForm.html');
-      const propertyTableResponse = await fetch('propertyTableSection.html');
+  <div id="user-form" class="hidden" aria-live="polite" aria-label="Formulaire utilisateur">
+    <h2 id="welcome-message">Bienvenue !</h2>
+    <div class="input-block">
+      <label id="label-username" for="username">Nom d'utilisateur :</label>
+      <input type="text" id="username" aria-required="true" />
+    </div>
+    <div class="input-block">
+      <label id="label-phone" for="phone">Numéro de téléphone :</label>
+      <input type="text" id="phone" aria-required="true" />
+    </div>
+    <button class="btn" id="btn-continue" onclick="submitUserInfo()">Continuer</button>
+  </div>
 
-      document.getElementById('languageSelection').innerHTML = await languageSelectionResponse.text();
-      document.getElementById('userForm').innerHTML = await userFormResponse.text();
-      document.getElementById('propertyTable').innerHTML = await propertyTableResponse.text();
-    }
+  <div id="content" class="hidden" aria-live="polite" aria-label="Liste des biens disponibles">
+    <button class="btn" onclick="resetApp()" id="btn-back">Retour au menu des langues</button>
+    <h2 id="property-title">Nos biens disponibles :</h2>
+    <table id="property-table" role="table" aria-describedby="property-title">
+      <thead>
+        <tr>
+          <th scope="col">N°</th>
+          <th scope="col">Bien</th>
+          <th scope="col">Titre</th>
+          <th scope="col">Description</th>
+          <th scope="col">Superficie</th>
+          <th scope="col">Prix</th>
+          <th scope="col">Photo</th>
+          <th scope="col">Vidéo</th>
+          <th scope="col">Valider</th>
+          <th scope="col">Proposition</th>
+          <th scope="col">Annuler</th>
+        </tr>
+      </thead>
+      <tbody id="property-body"></tbody>
+    </table>
 
-    window.addEventListener('load', () => {
-      loadSections();
-    });
+    <!-- Champ de commentaires -->
+    <div class="input-block">
+      <label for="comments">Commentaires :</label>
+      <textarea id="comments" rows="4" cols="50" placeholder="Laissez vos commentaires ici..."></textarea>
+    </div>
+    <br />
+    <button class="btn" onclick="saveToPDF()" id="btn-save">Enregistrer en PDF</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
-
-  </script>
 </body>
 
 </html>
