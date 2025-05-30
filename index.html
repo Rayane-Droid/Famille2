@@ -36,27 +36,6 @@
     });
 
 
-
-async function loadSections() {
-  const languageSelectionResponse = await fetch('languageSelection.html');
-  const userFormResponse = await fetch('userForm.html');
-  const propertyTableResponse = await fetch('propertyTable.html');
-
-  document.getElementById('languageSelection').innerHTML = await languageSelectionResponse.text();
-  document.getElementById('userForm').innerHTML = await userFormResponse.text();
-  document.getElementById('propertyTable').innerHTML = await propertyTableResponse.text();
-
-  // Attacher l'événement APRÈS le chargement du HTML
-  const submitBtn = document.getElementById('submitUserBtn');
-  if (submitBtn) {
-    submitBtn.addEventListener('click', submitUserInfo);
-  }
-}
-
-
-
-
-    
   </script>
 </body>
 
