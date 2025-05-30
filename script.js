@@ -310,5 +310,5 @@ function saveToPDF() {
 }
 
 window.addEventListener("load", () => {
-  document.getElementById("language-selection").classList.remove("hidden");
+  document.getElementById("languageSelection").classList.remove("hidden");
 });
