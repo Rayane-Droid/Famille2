@@ -10,30 +10,11 @@
   <script src="dictionnaire.js"></script>
     <script src="script.js"></script>
 </head>
-<style>
- </style>
+
 <body>
-  <div id="language-selection">
-    <h2 id="language-prompt">
-      🇲🇦 اختر لغتك :<br />
-      🇫🇷 Choisissez votre langue :<br />
-      🇺🇸 Choose your language:<br />
-      🇪🇸 Elija su idioma:<br />
-      🇩🇪 Wählen Sie Ihre Sprache:<br />
-      🇮🇹 Scegli la tua lingua:
-    </h2>
-    <div class="language-menu">
-      <select id="language" onchange="selectLanguage()">
-        <option value="">--</option>
-        <option value="fr">Français</option>
-        <option value="ar">العربية</option>
-        <option value="en">Anglais</option>
-        <option value="es">Espagnol</option>
-        <option value="de">Allemand</option>
-        <option value="it">Italien</option>
-      </select>
-    </div>
-  </div>
+  <!-- Chargement du composant langue via JavaScript -->
+  <div id="language-container"></div>
+  
 
   <div id="user-form" class="hidden" aria-live="polite" aria-label="Formulaire utilisateur">
     <h2 id="welcome-message">Bienvenue !</h2>
@@ -80,9 +61,19 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+
+ <!-- Script pour insérer la sélection de langue -->
   <script>
-   
+    // Charger dynamiquement le composant HTML de sélection de langue
+    fetch('language-selection.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('language-container').innerHTML = data;
+      });
   </script>
+
+  
 </body>
 
 </html>
